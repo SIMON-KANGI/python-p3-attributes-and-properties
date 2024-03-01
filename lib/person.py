@@ -16,12 +16,10 @@ APPROVED_JOBS = [
 ]
 
 class Person:
-    def __init__(self, name,job):
-        self.name=name
-        self.job=job
-    def get_name(self):
-        print("getting name")
-        return self._name
+    def __init__(self, name="Simon",job="ITC"):
+        self.set_name(name)
+        self.set_job(job)
+    
     def set_name(self, name):
         if isinstance(name, str) and 1<=len(name)<=25:
             saved=name.title()
@@ -30,10 +28,7 @@ class Person:
             print(saved)
         else:
             print("Name must be string between 1 and 25 characters.")
-    name=property(get_name, set_name)
-    def get_job(self):
-        print("getting job")
-        return self.get_job
+    
     def set_job(self, job):
         if job in APPROVED_JOBS:
             print("setting job")
@@ -41,9 +36,13 @@ class Person:
             print(job)
         else:
             print("Job must be in list of approved jobs.")
-    job=property(get_job, set_job)
-        
+    
+    @property
+    def name(self):
+        return self._name
+    
+    @property
+    def breed(self):
+        return self._breed
 
-Car=Person(name="bMW", job="ITC")
-Car.name="simon"
-Car.job="Software Engineering"
+
